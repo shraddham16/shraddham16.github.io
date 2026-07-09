@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shraddha Mandhare - Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181B;
+    --paper:#F6F5F1;
+    --slate:#5A6268;
+    --line:#DEDCD4;
+    --accent:#2F5D50;   /* deep pine green */
+    --accent-soft:#E7EEEA;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    margin:0 0 0.4em 0;
+    letter-spacing:-0.01em;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  /* ---- NAV ---- */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(246,245,241,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:16px; padding-bottom:16px;
+  }
+  nav .brand{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
+  nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;}
+  nav a{color:var(--ink); font-size:0.9rem; font-weight:500;}
+
+  /* ---- HERO ---- */
+  header.hero{padding:76px 0 56px 0;}
+  header.hero .eyebrow{
+    color:var(--accent); font-weight:600; font-size:0.85rem;
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px;
+  }
+  header.hero h1{font-size:2.3rem; font-weight:700; max-width:680px;}
+  header.hero p.lede{
+    font-size:1.1rem; color:var(--slate); max-width:620px; margin-top:14px;
+  }
+  .cta-row{margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:12px 22px; border-radius:6px;
+    font-weight:600; font-size:0.95rem;
+  }
+  .btn-primary{background:var(--accent); color:#fff;}
+  .btn-primary:hover{background:#254a40; text-decoration:none;}
+  .btn-ghost{border:1px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--accent); text-decoration:none;}
+
+  /* ---- SECTIONS ---- */
+  section{padding:52px 0; border-top:1px solid var(--line);}
+  section h2{font-size:1.5rem; margin-bottom:26px;}
+  .section-tag{
+    font-size:0.8rem; color:var(--accent); font-weight:600;
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;
+  }
+
+  /* ---- ABOUT ---- */
+  .about-grid{display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;}
+  .about-text{flex:1 1 420px; color:var(--slate);}
+  .skills{flex:0 0 300px;}
+  .skill-group{margin-bottom:18px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-group h4{
+    font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--slate); font-weight:600; margin:0 0 8px 0;
+  }
+  .skills ul{list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:6px;}
+  .skills li{
+    background:var(--accent-soft); color:var(--accent);
+    padding:5px 11px; border-radius:100px; font-size:0.8rem; font-weight:500;
+  }
+
+  /* ---- EXPERIENCE ---- */
+  .exp-item{margin-bottom:30px;}
+  .exp-item:last-child{margin-bottom:0;}
+  .exp-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:8px; margin-bottom:2px;
+  }
+  .exp-role{font-weight:600; font-size:1.03rem;}
+  .exp-org{color:var(--accent); font-weight:500;}
+  .exp-loc{color:var(--slate); font-size:0.85rem; margin-bottom:6px;}
+  .exp-date{color:var(--slate); font-size:0.87rem; white-space:nowrap;}
+  .exp-item ul{margin:8px 0 0 0; padding-left:20px; color:var(--slate); font-size:0.94rem;}
+  .exp-item li{margin-bottom:5px;}
+  .subsection-title{
+    font-size:0.95rem; font-weight:600; color:var(--ink);
+    margin:36px 0 18px 0; padding-top:8px;
+  }
+  .subsection-title:first-child{margin-top:0; padding-top:0;}
+
+  /* ---- PROJECTS ---- */
+  .project-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media(max-width:640px){.project-grid{grid-template-columns:1fr;}}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:22px; display:flex; flex-direction:column; height:100%;
+  }
+  .card h3{font-size:1.05rem; margin-bottom:4px;}
+  .card .card-date{color:var(--slate); font-size:0.8rem; margin-bottom:10px;}
+  .card ul{color:var(--slate); font-size:0.88rem; padding-left:18px; margin:0 0 12px 0; flex-grow:1;}
+  .card li{margin-bottom:5px;}
+  .tag-row{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;}
+  .tag{
+    font-size:0.73rem; color:var(--slate); border:1px solid var(--line);
+    padding:3px 9px; border-radius:100px;
+  }
+  .card a.link{font-size:0.86rem; font-weight:600;}
+
+  /* ---- EDUCATION ---- */
+  .edu-item{display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:18px;}
+  .edu-item:last-child{margin-bottom:0;}
+  .edu-main .school{font-weight:600;}
+  .edu-main .degree{color:var(--slate); font-size:0.92rem;}
+  .edu-date{color:var(--slate); font-size:0.88rem;}
+
+  /* ---- CERTS ---- */
+  .cert-list{list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:12px 30px;}
+  @media(max-width:640px){.cert-list{grid-template-columns:1fr;}}
+  .cert-list li{
+    border-bottom:1px solid var(--line); padding-bottom:10px; font-size:0.92rem;
+  }
+  .cert-list .cert-name{font-weight:600;}
+  .cert-list .cert-meta{color:var(--slate); font-size:0.85rem;}
+
+  /* ---- CONTACT / FOOTER ---- */
+  footer{padding:50px 0 60px 0; text-align:center;}
+  footer h2{font-size:1.5rem;}
+  footer p{color:var(--slate);}
+  .contact-links{
+    display:flex; gap:22px; justify-content:center; margin-top:18px; flex-wrap:wrap;
+  }
+  .contact-links a{font-weight:600;}
+  .fine-print{margin-top:40px; font-size:0.8rem; color:var(--slate);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Shraddha Mandhare</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Biomedical Engineering · Quality, Validation &amp; Product Design</div>
+    <h1>Bridging industrial automation and biomedical research to build safer, better-validated medical devices.</h1>
+    <p class="lede">M.S. Biomedical Engineering candidate at the University of Florida (GPA 3.94) with hands-on experience in quality systems, process validation, and regulated manufacturing, now applying that rigor to neural interface research and medical device design.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="RESUME.pdf" target="_blank">Download Resume</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-tag">About</div>
+    <h2>A little about me</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a biomedical engineering graduate student at the University of Florida, bridging industrial automation and biomedical research. Before grad school, I spent a year at Emerson's Export Engineering Centre designing HMI graphics for pharmaceutical batch systems, leading safety automation subsystems, and conducting DCS validation for oil &amp; gas projects, in environments where precision and compliance weren't optional.</p>
+        <p>Now at the Neural Interface Technology Lab, I'm developing multi-layer EEG head phantoms to characterize implantable PCB performance in tissue-equivalent environments, alongside pre-clinical animal research. I've also explored the full arc from research to market: medical device commercialization, regulatory strategy, and clinical customer discovery.</p>
+        <p>My goal is to bring both research depth and industry experience into a medical device career, contributing to products that meaningfully improve patient outcomes. Open to connecting with engineers, clinicians, and teams building the next generation of medical devices.</p>
+      </div>
+      <div class="skills">
+        <div class="skill-group">
+          <h4>Design &amp; CAD</h4>
+          <ul>
+            <li>SolidWorks</li>
+            <li>Fusion 360</li>
+            <li>AutoCAD</li>
+            <li>DFM / DFA</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Quality &amp; Regulatory</h4>
+          <ul>
+            <li>ISO 13485</li>
+            <li>ISO 9001</li>
+            <li>GMP</li>
+            <li>CAPA</li>
+            <li>FDA 21 CFR Part 820</li>
+            <li>510(k) Pathway</li>
+            <li>IEC 60601</li>
+            <li>ISA-88</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Validation &amp; Testing</h4>
+          <ul>
+            <li>IQ / OQ / PQ</li>
+            <li>FAT / SAT</li>
+            <li>Process FMEA</li>
+            <li>DHF / DMR</li>
+            <li>Traceability Matrix</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Tools &amp; Process</h4>
+          <ul>
+            <li>MATLAB</li>
+            <li>R</li>
+            <li>HMI / SCADA</li>
+            <li>PLC / DCS · DeltaV</li>
+            <li>Lean Six Sigma (DMAIC)</li>
+            <li>Root Cause Analysis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-tag">Experience</div>
+    <h2>Where I've worked</h2>
+
+    <div class="subsection-title">Research</div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Graduate Research Assistant</span> · <span class="exp-org">Neural Interface Technology Lab, University of Florida</span></div>
+        <div class="exp-date">Mar 2025 – Present</div>
+      </div>
+      <div class="exp-loc">Gainesville, FL</div>
+      <ul>
+        <li>Developing a multi-layer EEG head phantom (ballistic gelatin brain-equivalent medium with embedded dipole antennas and injected sinusoidal signals) to characterize the signal acquisition and wireless transmission performance of an implantable PCB prior to in vivo testing.</li>
+        <li>Applying bench-top verification and validation methodology to assess device performance in a tissue-equivalent environment before clinical progression.</li>
+        <li>Conducting IACUC-protocol-compliant animal research for ferritin drug studies, responsible for controlled experimental setup, data collection, and quantitative analysis ensuring research integrity and regulatory adherence.</li>
+      </ul>
+    </div>
+
+    <div class="subsection-title">Industry</div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Graduate Engineer Trainee</span> · <span class="exp-org">Emerson Export Engineering Centre II</span></div>
+        <div class="exp-date">Jun 2024 – Jun 2025</div>
+      </div>
+      <div class="exp-loc">Nashik, India</div>
+      <ul>
+        <li>Designed and validated 30+ HMI graphics for pharmaceutical batch processes using ISA-88 modular architecture, ensuring full compliance with GMP standards and client specifications and directly supporting audit-ready quality management practices.</li>
+        <li>Led end-to-end design and commissioning of two safety automation subsystems, managing interlock logic and fail-safe testing, improving testing efficiency by 15% and reducing commissioning timelines.</li>
+        <li>Executed requirements traceability matrices (RTM), functional testing, and compliance verification; produced validation reports, SOPs, and test protocols aligned with DHF documentation practices for regulated systems.</li>
+        <li>Applied risk assessment methodology equivalent to Process FMEA for safety-critical automation systems, ensuring all design and testing activities satisfied fail-safe, risk-based requirements.</li>
+        <li>Applied structured root-cause troubleshooting during FAT, identifying and resolving systemic configuration defects and directly reducing rework and production delays.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Engineering Intern</span> · <span class="exp-org">Emerson Export Engineering Centre II</span></div>
+        <div class="exp-date">Jul 2023 – Dec 2023</div>
+      </div>
+      <div class="exp-loc">Nashik, India</div>
+      <ul>
+        <li>Executed Pre-FAT and FAT for 20+ DCS control system cabinets across oil &amp; gas projects, verifying hardware integrity, I/O wiring, control logic, communication protocols, and system functionality against acceptance criteria.</li>
+        <li>Identified, documented, and tracked 20+ configuration and integration nonconformances during acceptance testing; collaborated with cross-functional teams on root cause analysis and resolution, reducing rework and project delays.</li>
+        <li>Maintained ISO 9001-compliant quality records throughout the testing lifecycle, ensuring full traceability from specification to acceptance and adherence to project quality plans.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Internship Trainee</span> · <span class="exp-org">Garware Technical Fibres Limited</span></div>
+        <div class="exp-date">Jul 2022 – Aug 2022</div>
+      </div>
+      <div class="exp-loc">Wai, Maharashtra, India</div>
+      <ul>
+        <li>Worked with PLC ladder logic in an industrial manufacturing environment as part of an early hands-on introduction to automation and controls.</li>
+      </ul>
+    </div>
+
+    <div class="subsection-title">Leadership &amp; Involvement</div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Operations Coordinator</span> · <span class="exp-org">TEDxUF</span></div>
+        <div class="exp-date">Sep 2025 – Mar 2026</div>
+      </div>
+      <div class="exp-loc">Gainesville, FL · Part-time</div>
+      <ul>
+        <li>Coordinated event operations and cross-team communication to support the planning and execution of a TEDx event.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Co-Founder &amp; Vice President</span> · <span class="exp-org">Sanhita – The Biomedical Club</span></div>
+        <div class="exp-date">Jan 2023 – Aug 2024</div>
+      </div>
+      <ul>
+        <li>Co-founded and helped lead a student biomedical engineering club, managing programming, communication, and member engagement.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Outsourcing Head</span> · <span class="exp-org">ASME – Cummins College of Engineering for Women</span></div>
+        <div class="exp-date">Aug 2022 – May 2023</div>
+      </div>
+      <ul>
+        <li>Coordinated external partnerships and team logistics for ASME chapter initiatives.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Branch Representative, Instrumentation &amp; Control Engineering</span> · <span class="exp-org">ASME – Cummins College of Engineering for Women</span></div>
+        <div class="exp-date">Aug 2021 – Aug 2022</div>
+      </div>
+      <ul>
+        <li>Represented the Instrumentation &amp; Control Engineering branch within the college ASME chapter.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-tag">Projects</div>
+    <h2>Selected work</h2>
+    <div class="project-grid">
+
+      <div class="card">
+        <h3>Bone Tissue Scaffold Design</h3>
+        <div class="card-date">Fusion 360 · India, Jul 2025</div>
+        <ul>
+          <li>Designed a parametric 3D porous bone tissue scaffold, optimizing pore size (100–500 µm range) and geometry to balance mechanical load-bearing strength with nutrient/vascularization requirements.</li>
+          <li>Justified biomaterial selection based on biocompatibility, biodegradability, and osteoconductive properties suited for orthopedic implant applications.</li>
+          <li>Evaluated pore architecture tradeoffs (porosity vs. compressive strength) to meet cortical and cancellous bone mechanical property benchmarks for potential clinical use.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Fusion 360</span>
+          <span class="tag">Biomaterials</span>
+          <span class="tag">Orthopedic Implants</span>
+        </div>
+        <a class="link" href="https://github.com/shraddham16/Bone-Scaffold_Biomedical" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>GatorCatch: Wearable Vacuum-Assisted Urinary Collection Device</h3>
+        <ul>
+          <li>Defined regulatory strategy for a Class II wearable device using an FDA 510(k) dual-predicate approach; evaluated four biomaterials against relevant biocompatibility criteria and mapped IEC 60601 requirements to design inputs.</li>
+          <li>Contributed to prototype design and assembly using SolidWorks-modeled components, applying DFM/DFA principles.</li>
+          <li>Conducted IP prior art analysis across USPTO, EPO, and WIPO; developed a commercialization plan targeting the $4.2B global urinary incontinence device market.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">510(k) Strategy</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Multimodal Emotion Recognition: Wearable Sensor System</h3>
+        <ul>
+          <li>Designed a wearable signal acquisition system integrating EMG, PPG, and pulse pressure sensors; extracted 15+ features including HRV, Spectral Flux, and MAV.</li>
+          <li>Deployed an attention-based deep multimodal architecture to classify emotional states with improved generalization.</li>
+          <li>Executed full-cycle development from sensor selection and signal conditioning through feature extraction and output verification, directly applicable to medical device data acquisition and V&amp;V testing workflows.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Signal Processing</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Wearables</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Customer Discovery &amp; Technology Commercialization</h3>
+        <div class="card-date">i-Corps–Style</div>
+        <ul>
+          <li>Conducted 15 structured customer discovery interviews with clinicians, researchers, and industry stakeholders using the NSF i-Corps Business Model Canvas methodology to evaluate the commercial viability of faculty-assigned biomedical IP.</li>
+          <li>Identified unmet clinical needs, product-market fit, and regulatory/manufacturing scale-up barriers.</li>
+          <li>Synthesized findings into a go/no-go commercial assessment targeting the $4.2B global medical device market.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Customer Discovery</span>
+          <span class="tag">Commercialization</span>
+          <span class="tag">NSF i-Corps</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-tag">Education</div>
+    <h2>Academic background</h2>
+
+    <div class="edu-item">
+      <div class="edu-main">
+        <div class="school">University of Florida</div>
+        <div class="degree">M.S. Biomedical Engineering · GPA 3.94</div>
+      </div>
+      <div class="edu-date">Aug 2025 – Aug 2027 · Gainesville, FL</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-main">
+        <div class="school">MKSSS Cummins College of Engineering for Women</div>
+        <div class="degree">B.Tech. Instrumentation &amp; Control Engineering · GPA 3.43</div>
+      </div>
+      <div class="edu-date">Aug 2020 – Jun 2024 · Pune, India</div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-tag">Certifications &amp; Courses</div>
+    <h2>Continued learning</h2>
+    <ul class="cert-list">
+      <li>
+        <div class="cert-name">Quality Management Foundations</div>
+        <div class="cert-meta">LinkedIn Learning · Jun 2026</div>
+      </li>
+      <li>
+        <div class="cert-name">Good Manufacturing Practice (GMP)</div>
+        <div class="cert-meta">Pharmuni · Mar 2026</div>
+      </li>
+      <li>
+        <div class="cert-name">Intellectual Property: Inventors, Entrepreneurs, Creators</div>
+        <div class="cert-meta">National Academy of Inventors · Feb 2026</div>
+      </li>
+      <li>
+        <div class="cert-name">Six Sigma: Green Belt</div>
+        <div class="cert-meta">LinkedIn Learning · Sep 2025</div>
+      </li>
+      <li>
+        <div class="cert-name">Introduction to Programming with MATLAB</div>
+        <div class="cert-meta">Vanderbilt University · Sep 2025</div>
+      </li>
+      <li>
+        <div class="cert-name">ISO 13485 Course Completion</div>
+        <div class="cert-meta">Advisera</div>
+      </li>
+      <li>
+        <div class="cert-name">Python Data Structures</div>
+        <div class="cert-meta">University of Michigan · Jul 2021</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="section-tag" style="text-align:center;">Contact</div>
+    <h2>Let's talk</h2>
+    <p>Open to internships, research roles, and full-time opportunities in the medical device industry.</p>
+    <div class="contact-links">
+      <a href="mailto:mandhare.shraddha16@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/shraddha-mandhare/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/shraddham16" target="_blank">GitHub</a>
+    </div>
+    <div class="fine-print">© 2026 Shraddha Mandhare. Built with GitHub Pages.</div>
+  </div>
+</footer>
+
+</body>
+</html>
